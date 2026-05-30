@@ -10,13 +10,13 @@ NHSPracticeAnalysisConfig
 """
 
 from pathlib import Path
-from typing import Optional
 
 from oops_its_a_pipeline import PipelineConfig
 
-# TODO: move credentials to environment variables before deploying
-AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"
-AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+# Credentials must come from environment variables, never hardcoded.
+# Set these in your shell or a .env file (which should be in .gitignore):
+#   export AWS_ACCESS_KEY_ID="your-key-here"
+#   export AWS_SECRET_ACCESS_KEY="your-secret-here"
 
 
 class NHSPracticeAnalysisConfig(PipelineConfig):
@@ -39,7 +39,7 @@ class NHSPracticeAnalysisConfig(PipelineConfig):
 
     # File patterns and processing options
     csv_file_pattern: str = "*.csv"
-    sample_size: Optional[int] = None
+    sample_size: int | None = None
     lookup_file: str = "Mapping.csv"
 
     # Output settings
